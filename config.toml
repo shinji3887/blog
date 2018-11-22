@@ -1,0 +1,97 @@
+title = "L' Blog"
+theme = "hugo-theme-cleanwhite"
+languageCode = "en-us"
+# Enable comments by entering your Disqus shortname
+disqusShortname = ""
+googleAnalytics = ""
+preserveTaxonomyNames = true
+paginate = 5 #frontpage pagination
+hasCJKLanguage = true
+
+[outputs]
+home = ["HTML", "RSS", "Algolia"]
+
+[params]
+  header_image = "img/404-bg.jpg"
+  SEOTitle = "同步率400%"
+  description = "关注云原生Cloud Native相关领域，spring cloud、kubernetes、istio、devops技术研究"
+  keyword = "暴走的初号机, shinji3887, 暴走的初号机的网络日志, 暴走的初号机的博客, shinji3887 Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice"
+  slogan = "同步率400%"
+
+  image_404 = "img/404-bg.jpg"
+  title_404 = "你来到了没有知识的荒原 :("
+
+  # leancloud storage for page view counter
+  page_view_conter = false
+  leancloud_app_id = ""
+  leancloud_app_key = ""
+
+  # algolia site search
+  algolia_search = false 
+  algolia_appId = ""
+  algolia_indexName = ""
+  algolia_apiKey = ""
+
+  # Sidebar settings
+  sidebar_about_description = "普通程序员一枚，云原生领域爱好者，spring boot、spring cloud、kubernetes、istio、devops技术研究"
+  sidebar_avatar = "img/1521288767.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+  featured_tags = true 
+  featured_condition_size = 1
+
+  # Baidu Analytics
+  ba_track_id = ""
+  
+  # We need a proxy to access Disqus api in China
+  disqus_proxy = ""
+  disqus_site = ""
+
+  #wechat pay & alipay 
+  reward = false
+  # reward_guide = "如果这篇文章对你有用，请随意打赏" 
+
+  [params.social]
+  rss            = true 
+  email          = "18016380795@163.com"
+  #facebook      = "full profile url in facebook"
+  #googleplus    = "full profile url in googleplus"
+  #twitter       = "full profile url in twitter"
+  linkedin       = "full profile url in linkedin"
+  stackoverflow  = "full profile url in stackoverflow"
+  #instagram     = "full profile url in instagram"
+  github         = "https://github.com/shinji3887"
+  wechat         = "link of wechat QR code image"
+  #pinterest     = "full profile url in pinterest"
+  
+  [[params.friend_link]]
+  title = "小剑的博客"
+  href =  "https://skyao.io/"
+  [[params.friend_link]]
+  title = "huabing的博客"
+  href =  "https://zhaohuabing.com/"
+  [[params.friend_link]]
+  title = "程序猿DD的博客"
+  href =  "http://blog.didispace.com/"
+
+  [[params.bookmark_link]]
+  title =  "Martin Fowler"
+  href =  "https://martinfowler.com"
+  [[params.bookmark_link]]
+  title = "Service Mesh中文社区"
+  href =  "http://www.servicemesher.com"
+  [[params.bookmark_link]]
+  title = "Istio官方中文网站"
+  href = "https://istio.io/zh"
+  [[params.bookmark_link]]
+  title =  "spring4all中文社区"
+  href = "http://www.spring4all.com/"
+  
+[outputFormats.Algolia]
+baseName = "algolia"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true
+
+[params.algolia]
+vars = ["title", "summary", "date", "publishdate", "expirydate", "permalink"]
+params = ["categories", "tags"] 
