@@ -10,7 +10,7 @@ tags:
 categories: [ Tips ]
 ---
 
-前端项目需要进行CI/CD集成，CI服务器是linux的，所以需要在服务器上安装npm环境，记录一下安装过程以及碰到的坑。安装很简单，直接下载官网的[linux二进制包](https://nodejs.org/dist/v10.13.0/node-v10.13.0-linux-x64.tar.xz)，并将bin目录设置在环境变量中就ok了，执行
+前端项目需要进行CI/CD集成，CI服务器是linux版本的，所以需要在服务器上安装npm环境，记录一下安装过程以及碰到的坑。安装很简单，直接下载官网的[linux二进制包](https://nodejs.org/dist/v10.13.0/node-v10.13.0-linux-x64.tar.xz)，并将bin目录设置在环境变量中就ok了，执行
 ```bash
 [root@localhost dist]# npm -version
 6.4.1
