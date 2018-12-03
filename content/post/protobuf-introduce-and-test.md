@@ -47,7 +47,10 @@ message Person {
 ```bash
 protoc ./message.proto --java_out=./
 ```
-可在当前目录下生成对应对应语言的对象描述代码，这边对应的是java的class文件，再把文件拷贝到项目工程目录内，就可以使用了。（需要下载对应语言的protoc二进制程序）
+可在当前目录下生成对应对应语言的对象描述代码，这边对应的是java的class文件，再把文件拷贝到项目工程目录内，就可以使用了。（需要下载对应语言的protoc二进制程序）。
+这边是一个简单的proto报文生成过程
+![timg.jpg](https://upload-images.jianshu.io/upload_images/14871146-6b9626c951834594.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 大家如果之前用过web service的话，应该会有似曾相识的感觉。这个proto文件，我理解为类似于SOAP的wsdl描述文件，即是一份用来描述数据结构的标准文档说明，各语言的sdk可根据该语言的proto文件生成标准的类文件（是不是想起来了wsdl2java），从而达到跨语言的远程调用（RPC调用）。
 然而实际使用中，基于这种模式使用还是比较麻烦，如果对象多了要写一堆proto定义文件，另外生成出来的java对象可读性也比较差，和平时用的pojo有很大不同。本文介绍一种更加方便的使用protobuf的方法，就是protostuff。利用这个框架，可以跳过编写proto文件的步骤，直接生成protobuf格式的报文，接收端也可以直接使用该框架将二进制反序列化为Object对象，用到的就是我们平时使用的普通的java对象。利用Protostuff-Runtime模块可以不需要静态编译protoc，只要在runtime的时候传入schema就可以了。下面就来实操一下
 首先引入maven依赖
