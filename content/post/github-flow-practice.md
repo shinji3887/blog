@@ -1,14 +1,14 @@
 ﻿---
 title: "Git的代码分支策略实践"
 date: 2018-11-26
-excerpt: "基于git的代码分支工作流模型进行devops项目管理"
-description: "基于git的代码分支工作流模型进行devops项目管理"
+excerpt: "基于git的工作流方案实践"
+description: "基于git的工作流方案实践"
 gitalk: true
 image: "img/git-flow-7-638.jpg"
 author: L'
 tags:
-    - git
-    - devops
+    - Git
+    - DevOps
 categories: [ Tech ]
 ---
 
