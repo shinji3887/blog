@@ -12,7 +12,7 @@ hasCJKLanguage = true
 home = ["HTML", "RSS", "Algolia"]
 
 [params]
-  header_image = "img/404-bg.jpg"
+  header_image = "img/road-mountains-sunset-path-163848.jpeg"
   SEOTitle = "同步率400%"
   description = "关注云原生Cloud Native相关领域，spring cloud、kubernetes、istio、devops技术研究"
   keyword = "暴走的初号机, shinji3887, 暴走的初号机的网络日志, 暴走的初号机的博客, shinji3887 Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice"
