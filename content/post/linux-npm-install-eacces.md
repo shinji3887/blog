@@ -11,11 +11,14 @@ categories: [ Tips ]
 ---
 
 前端项目需要进行CI/CD集成，CI服务器是linux版本的，所以需要在服务器上安装npm环境，记录一下安装过程以及碰到的坑。安装很简单，直接下载官网的[linux二进制包](https://nodejs.org/dist/v10.13.0/node-v10.13.0-linux-x64.tar.xz)，并将bin目录设置在环境变量中就ok了，执行
+
 ```bash
 [root@localhost dist]# npm -version
 6.4.1
 ```
+
 说明安装成功了，接下来在执行项目的初始化（基于vue-cli）npm install时，却反复提示权限不足
+
 ```bash
 [root@localhost bocsh-vue-admin]# npm install
 
@@ -49,36 +52,37 @@ npm ERR! code ELIFECYCLE
 npm ERR! errno 1
 npm ERR! nodent-runtime@3.2.1 install: `node build.js`
 npm ERR! Exit status 1
-npm ERR! 
+npm ERR!
 npm ERR! Failed at the nodent-runtime@3.2.1 install script.
 npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
 ```
+
 这里百思不得其解，谷歌了半天，还是官网的一篇文章解决问题，就是更换npm的默认存储库（至于为什么换了就好了，也不明白，我是root用户啊。。），步骤如下：
 
 1. Back up your computer.
 
-2. On the command line, in your home directory, create a directory for global installations:
-```bash
+1. On the command line, in your home directory, create a directory for global installations:
+  ```bash
 mkdir ~/.npm-global
 ```
 
-3. Configure npm to use the new directory path:
-```bash
+1. Configure npm to use the new directory path:
+  ```bash
  npm config set prefix '~/.npm-global'
 ```
 
-4. In your preferred text editor, open or create a ~/.profile file and add this line:
-```bash
+1. In your preferred text editor, open or create a ~/.profile file and add this line:
+  ```bash
 export PATH=~/.npm-global/bin:$PATH
 ```
 
-5. On the command line, update your system variables:
-```bash
+1. On the command line, update your system variables:
+  ```bash
  source ~/.profile
 ```
 
-6. To test your new configuration, install a package globally without using sudo:
- ```bash
+1. To test your new configuration, install a package globally without using sudo:
+  ```bash
 npm install -g jshint
 ```
 

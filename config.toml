@@ -12,14 +12,17 @@ hasCJKLanguage = true
 home = ["HTML", "RSS", "Algolia"]
 
 [params]
-  header_image = "img/road-mountains-sunset-path-163848.jpeg"
+  header_image = "https://lupeier.cn-sh2.ufileos.com/clouds-dawn-dock-891822.jpg"
   SEOTitle = "同步率400%"
   description = "关注云原生Cloud Native相关领域，spring cloud、kubernetes、istio、devops技术研究"
   keyword = "暴走的初号机, shinji3887, 暴走的初号机的网络日志, 暴走的初号机的博客, shinji3887 Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice"
   slogan = "同步率400%"
 
-  image_404 = "img/404-bg.jpg"
+  image_404 = "http://img.lupeier.com/404-bg.jpg"
   title_404 = "你来到了没有知识的荒原 :("
+
+  #img url
+  imgurl = "https://lupeier.cn-sh2.ufileos.com"
 
   # leancloud storage for page view counter
   page_view_conter = false
@@ -57,7 +60,7 @@ home = ["HTML", "RSS", "Algolia"]
   #googleplus    = "full profile url in googleplus"
   #twitter       = "full profile url in twitter"
   linkedin       = "full profile url in linkedin"
-  stackoverflow  = "full profile url in stackoverflow"
+  stackoverflow  = "https://stackoverflow.com/users/9418951/shinji3887"
   #instagram     = "full profile url in instagram"
   github         = "https://github.com/shinji3887"
   wechat         = "link of wechat QR code image"
@@ -78,13 +81,10 @@ home = ["HTML", "RSS", "Algolia"]
   href =  "https://martinfowler.com"
   [[params.bookmark_link]]
   title = "Service Mesh中文社区"
-  href =  "http://www.servicemesher.com"
+  href =  "https://www.servicemesher.com"
   [[params.bookmark_link]]
   title = "Istio官方中文网站"
   href = "https://istio.io/zh"
-  [[params.bookmark_link]]
-  title =  "spring4all中文社区"
-  href = "http://www.spring4all.com/"
   
 [outputFormats.Algolia]
 baseName = "algolia"

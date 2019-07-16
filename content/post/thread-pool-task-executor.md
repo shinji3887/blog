@@ -11,6 +11,7 @@ categories: [ Tips ]
 ---
 
 最近项目中要用到多线程处理任务，自然就用到了ThreadPoolTaskExecutor这个对象，这个是spring对于Java的concurrent包下的ThreadPoolExecutor类的封装，对于超出等待队列大小的任务默认是使用RejectedExecutionHandler去处理拒绝的任务，而这个Handler的默认策略是AbortPolicy，直接抛出RejectedExecutionException异常，这个不符合我们的业务场景，我希望是对于超出的任务，主线程进行阻塞，直到有可用线程，简单的代码如下
+
 ```java
 ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
 //默认线程池建立的线程数，当多余的线程处于空闲状态时，大于这个数字的线程会自动销毁
@@ -55,7 +56,9 @@ for (int i = 0; i < 100; i++) {
     });
 }
 ```
+
 结果输出：
+
 ```sh
 INFO  2018-11-15 12:41:00,115 [scheduler-ssmQuartz_Worker-1] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor: Initializing ExecutorService 
 INFO  2018-11-15 12:41:00,116 [ThreadPoolTaskExecutor-1] com.bocsh.base.quartz.TimingCardUpdate: thread start 0
@@ -94,6 +97,7 @@ INFO  2018-11-15 12:44:20,120 [ThreadPoolTaskExecutor-9] com.bocsh.base.quartz.T
 INFO  2018-11-15 12:44:20,120 [scheduler-ssmQuartz_Worker-1] com.bocsh.base.quartz.TimingCardUpdate: start get queue
 INFO  2018-11-15 12:44:20,120 [ThreadPoolTaskExecutor-6] com.bocsh.base.quartz.TimingCardUpdate: thread start 19
 ```
+
 可以看到，在任务超过线程池大小后，start get queue后会阻塞。
 这里之所以能实现阻塞，是基于BlockingQueue的put方法来实现的，当阻塞队列满时，put方法会一直等待
 

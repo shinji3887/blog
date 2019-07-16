@@ -35,10 +35,10 @@ categories: [ Tech ]
 #### 开发终端配置
 
 比较简单，直接在环境变量中设置如下参数，注意这里设置的是dev环境的配置中心 
-![env.jpg](https://upload-images.jianshu.io/upload_images/14870226-daf5ce95376a040c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
+![env.jpg](https://lupeier.cn-sh2.ufileos.com/config1.jpg)
 
  注意设置完之后eclipse需要重启一下，否则读不到变更的环境变量（IDEA我没有测过，不知道是不是一样）。可以通过下面这段代码看看环境变量是否正确获取
+
 ```java
 @RestController
 public class WebController {
@@ -53,16 +53,20 @@ public class WebController {
 
 }
 ```
+
 在浏览器输入URL后应该可以显示对应的环境变量值
 
 #### ConfigMap配置
 
 使用kubectl创建configmap资源有几种方式，这里我们直接使用命令行参数的方式创建配置信息对象，注意这里配置的是test环境的配置中心
+
 ```bash
 [root@localhost ~]# kubectl create configmap config-server --from-literal=config.address=http://10.10.0.2:10002 --from-literal=config.profile=test
 configmap "config-server" created
 ```
+
 执行如下命令确认configmap资源被成功创建
+
 ```bash
 [root@localhost ~]# kubectl get configmap config-server -o yaml
 apiVersion: v1
@@ -78,7 +82,9 @@ metadata:
    selfLink: /api/v1/namespaces/default/configmaps/config-server
    uid: 4a4b3713-e27e-11e8-8088-005056bd4c7c
 ```
+
 将configmap对象注入我们创建的应用deployment对象中，可以直接edit资源，也可以使用patch方式，注意`spec.containers.env`部分，即是我们注入的configmap信息
+
 ```yaml
 spec:
   replicas: 1
@@ -127,9 +133,11 @@ spec:
           name: app-volume
       dnsPolicy: ClusterFirst
 ```
+
 ### Spring Cloud Config配置
 
 这其实就是一个标准的Spring Cloud Config配置中心配置，这里不展开了，需要的同学可以直接看[这篇教程](http://blog.didispace.com/spring-cloud-starter-dalston-3)。考虑到开发生产环境的隔离、管理和可靠性的需要，我这边使用的是db存储模式（需要edgware以上版本），配置文件如下
+
 ```yaml
 spring:
     application:
@@ -158,13 +166,13 @@ encrypt:
 
 之后配合一个程序猿DD同学开源的配置管理项目SCCA（[github地址](https://github.com/dyc87112/spring-cloud-config-admin)）,能以可视化方式管理各环境配置，基本满足目前要求。如果想和内部已有的服务管理平台集成，也非常方便，只要实现对property这张配置表的CRUD就行了，spring cloud config会自动监听property里的变化并刷新参数，这也是我比较推荐db模式的原因。SCCA配置界面如下：
 
-
-![admin1.jpg](https://upload-images.jianshu.io/upload_images/14870226-351d78b661aa2cd5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![admin2.jpg](https://upload-images.jianshu.io/upload_images/14870226-f081274ced7c8527.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![admin1.jpg](https://lupeier.cn-sh2.ufileos.com/admin1.jpg)
+![admin2.jpg](https://lupeier.cn-sh2.ufileos.com/admin2.jpg)
 
 ### 应用配置
 
 至此所有准备工作完成，在应用里直接配置上配置中心的环境变量，就可以在各环境中无缝切换了，应用配置如下
+
 ```yaml
 spring:
     application:

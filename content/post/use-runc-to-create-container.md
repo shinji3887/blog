@@ -4,7 +4,7 @@ date: 2019-01-11
 excerpt: "runC工具创建容器实战"
 description: "runC工具创建容器实战"
 gitalk: true
-image: "img/pexels-photo-1645635.jpeg"
+image: "https://lupeier.cn-sh2.ufileos.com/back-view-boy-child-2495567.jpg"
 author: L'
 tags:
     - Docker
@@ -12,10 +12,10 @@ tags:
 categories: [ Tech ]
 ---
 
-
 > 上一篇文章中写道了docker的底层是使用runC来管理镜像的创建，启动，监控及删除的，这次就来看一下如何使用runC工具来管理镜像的生命周期
 
 runC的使用非常简单，首先去github下载已经编译好的二进制文件（写文章的时候版本是1.0-rc6），文件名一般为runc.amd64，直接拷贝进usr/bin目录即可。先执行一下runc命令，有如下显示
+
 ```bash
 NAME:
    runc - Open Container Initiative runtime
@@ -80,15 +80,19 @@ GLOBAL OPTIONS:
    --help, -h          show help
    --version, -v       print the version
 ```
+
 简单的说，runC是一个命令行工具，用来运行按照OCI标准格式打包过的应用，容器使用bundle进行配置。bundle的概念，简单来说就是一个目录，目录里包含一个配置文件`config.son`和一个root文件系统（rootfs目录），使用命令
-```
+
+```bash
 # runc run [ -b bundle ] <container-id>
 ```
+
 来启动一个容器，其中`-b`是可选项，用来指定bundle的位置（默认为当前目录），注意`container-id`必须在host上唯一。
 
 因为需要制作root filesystem，所以还需要安装好docker并设置好镜像仓库（这步不是必须的，理论上只要你制作出一个符合OCI规范的filesystem都可以，只是自己弄比较麻烦）
 
 准备工作都完成后，接下来就可以开始测试了
+
 ```bash
 # create the top most bundle directory
 mkdir /mycontainer
@@ -100,8 +104,10 @@ mkdir rootfs
 # export busybox via Docker into the rootfs directory
 docker export $(docker create busybox) | tar -C rootfs -xvf -
 ```
+
 这几步是先创建容器目录，再创建一个名字叫rootfs的目录，之后使用一个docker的镜像busybox（一个轻量级的linux工具集）来制作root filesystem(docker镜像都是符合OCI格式规范的)。完成后rootfs目录下会有如下文件
- ```bash
+
+```bash
 [root@localhost rootfs]# ls -l
 总用量 16
 drwxr-xr-x. 2 root      root      12288 1月   1 02:16 bin
@@ -115,11 +121,15 @@ drwxrwxrwt. 2 root      root          6 1月   1 02:16 tmp
 drwxr-xr-x. 3 root      root         18 1月   1 02:16 usr
 drwxr-xr-x. 4 root      root         30 1月   1 02:16 var
 ```
+
 有了rootfs之后，我们就可以执行如下命令
-```
+
+```bash
 runc spec
 ```
+
 来创建一个`config.json`文件，这个文件是一个标准的OCI格式的文件，内容如下
+
 ```json
 {
 	"ociVersion": "1.0.1-dev",
@@ -300,6 +310,7 @@ runc spec
 	}
 }
 ```
+
 这边再说一下OCI规范，援引一段OCI官网的说明
 
 > Established in June 2015 by Docker and other leaders in the container industry, the OCI currently contains two specifications: the Runtime Specification ([runtime-spec](http://www.github.com/opencontainers/runtime-spec)) and the Image Specification ([image-spec](http://www.github.com/opencontainers/image-spec)). The Runtime Specification outlines how to run a “[filesystem bundle](https://github.com/opencontainers/runtime-spec/blob/master/bundle.md)” that is unpacked on disk. At a high-level an OCI implementation would download an OCI Image then unpack that image into an OCI Runtime filesystem bundle. At this point the OCI Runtime Bundle would be run by an OCI Runtime.
@@ -307,21 +318,26 @@ runc spec
 简单的说，OCI有两个规范，一个是容器运行时规范`runtime-spec`，一个是镜像格式规范`image-spec`。一个镜像，简单来说就是一个打包好的符合OCI规范的`filesystem bundule`。而bundile的话，前面介绍过，包含一个配置文件`config.json`和一个rootfs目录。
 
 现在`rootfs`和`config.json`都有了，我们可以创建容器了，执行
-```
+
+```bash
 runc run mycontainerid
 ```
+
 创建容器，成功后会自动进入容器
 这时候我们执行`ps`一下，可以看到
-```
+
+```bash
 / # ps
 PID   USER     TIME  COMMAND
     1 root      0:00 sh
     7 root      0:00 ps
 ```
+
 可以看到这个容器里面的1号进程就是sh那个进程，看不到其他进程，容器启动试验成功。
 
 现在我们可以做容器的整个生命周期管理了
-```
+
+```bash
 # run as root
 cd /mycontainer
 runc create mycontainerid
@@ -338,8 +354,11 @@ runc list
 # now delete the container
 runc delete mycontainerid
 ```
+
 注意在执行`runc create mycontainerid`命令时，会报错
-```
+
+```bash
 cannot allocate tty if runc will detach without setting console socket
 ```
+
 这是由于在`config.json`文件中的配置`"terminal": true`，这个默认是true，即以终端方式启动，需要改成false。

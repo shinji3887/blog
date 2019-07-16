@@ -4,7 +4,7 @@ date: 2019-01-17
 excerpt: "后kubernetes时代概述"
 description: "后kubernetes时代概述"
 gitalk: true
-image: "img/pexels-photo-1167023.jpeg"
+image: "https://lupeier.cn-sh2.ufileos.com/boat-control-design-1416649.jpg"
 author: 张磊
 tags:
     - Kubernetes
@@ -210,4 +210,3 @@ Docker Inc 的未来
 2017 年，曾经的弄潮儿 Docker 公司在巨大的争议中终于完成了向商业公司的重要转变，也宣告了由 Kubernetes 社区所主导的、全新的容器生态正式拉开序幕。在回顾 Kubernetes 如何赢得这次竞争的同时，我们应该意识到容器运行时“二次繁荣”的短暂窗口正在为我们带来新的机遇。与此同时，容器公有云的形态正在悄然发生变化，伴随着这次变革而存在的，固然有风险，但也有很可能会催生出新的云计算赢家甚至独角兽。
 
 最为重要的是，伴随着 Kubernetes 社区的日益壮大，如何避免这个生态陷入 Solomon 所警告的“有毒”陷阱，恐怕很快就会成为摆在这个社区所有参与者面前的一道难题。是的，是所有参与者都对此负有责任，而绝不仅仅是 CNCF 或者 Google 就有能力独自解决的一次危机。
-
