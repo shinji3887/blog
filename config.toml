@@ -1,4 +1,4 @@
-title = "L' Blog"
+title = "L' HandBook"
 theme = "hugo-theme-cleanwhite"
 languageCode = "en-us"
 # Enable comments by entering your Disqus shortname
@@ -17,6 +17,9 @@ home = ["HTML", "RSS", "Algolia"]
   description = "关注云原生Cloud Native相关领域，spring cloud、kubernetes、istio、devops技术研究"
   keyword = "暴走的初号机, shinji3887, 暴走的初号机的网络日志, 暴走的初号机的博客, shinji3887 Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice"
   slogan = "同步率400%"
+
+  #gitalk评论开关
+  gitalk = false
 
   image_404 = "http://img.lupeier.com/404-bg.jpg"
   title_404 = "你来到了没有知识的荒原 :("
