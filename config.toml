@@ -19,7 +19,7 @@ home = ["HTML", "RSS", "Algolia"]
   slogan = "同步率400%"
 
   #gitalk评论开关
-  gitalk = false
+  gitalk = true
 
   image_404 = "http://img.lupeier.com/404-bg.jpg"
   title_404 = "你来到了没有知识的荒原 :("
