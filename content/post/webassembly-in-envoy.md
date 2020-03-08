@@ -4,7 +4,7 @@ date: 2020-03-08
 excerpt: "Envoy中使用WebAssembly进行扩展的运用"
 description: "Envoy中使用WebAssembly进行扩展的运用"
 gitalk: true
-image: "http://lupeier.cn-sh2.ufileos.com/man-in-black-jacket-and-orange-helmet-sitting-on-chair-3186949.jpg"
+image: "https://lupeier.cn-sh2.ufileos.com/man-in-black-jacket-and-orange-helmet-sitting-on-chair-3186949.jpg"
 author: proxy-wasm-spec
 tags:
     - Istio
@@ -68,7 +68,7 @@ WebAssembly（Wasm）是一种新兴的可移植二进制格式，用于执行�
 
 对于每种Envoy扩展类型，我们都创建了一个垫片（shim），将扩展的接口转换为Proxy-Wasm调用，因此该接口与本机（C++）Envoy扩展中使用的接口非常相似，其中包含事件驱动的编程模型。
 
-![envoy-work-thread](http://lupeier.cn-sh2.ufileos.com/envoy-work-thread.png)
+![envoy-work-thread](https://lupeier.cn-sh2.ufileos.com/envoy-work-thread.png)
 
 ### 运行时
 
